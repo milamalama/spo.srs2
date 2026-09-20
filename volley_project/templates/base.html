@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ЖВК МАИ{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="{{ url_for('index') }}" class="logo">ЖВК МАИ</a>
+
+        <nav class="menu">
+            <a href="{{ url_for('index') }}"
+               class="{% if request.endpoint == 'index' %}active{% endif %}">Главная</a>
+            <a href="{{ url_for('about') }}"
+               class="{% if request.endpoint == 'about' %}active{% endif %}">О проекте</a>
+            <a href="{{ url_for('players_list') }}"
+               class="{% if request.endpoint in ['players_list', 'player_detail'] %}active{% endif %}">Игроки</a>
+            <a href="{{ url_for('gallery') }}"
+               class="{% if request.endpoint == 'gallery' %}active{% endif %}">Галерея</a>
+            <a href="{{ url_for('add_player') }}"
+               class="{% if request.endpoint == 'add_player' %}active{% endif %}">Добавить игрока</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container page">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+    <div class="container">Волейбольный проект</div>
+</footer>
+
+</body>
+</html>

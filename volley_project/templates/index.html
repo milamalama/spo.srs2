@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}ЖВК МАИ{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>ЖВК МАИ</h1>
+    <p>Учебный сайт: состав команды, галерея и добавление новых игроков.</p>
+    <p class="badge">Игроков в составе: <strong>{{ players_count }}</strong></p>
+</section>
+
+<section class="cards">
+    <article class="card">
+        <h3>Состав команды</h3>
+        <p>Таблица игроков с фильтром по амплуа.</p>
+        <a class="btn" href="{{ url_for('players_list') }}">Открыть список</a>
+    </article>
+
+    <article class="card">
+        <h3>Галерея</h3>
+        <p>Фотографии с матчей, тренировок и событий команды.</p>
+        <a class="btn" href="{{ url_for('gallery') }}">Смотреть фото</a>
+    </article>
+
+    <article class="card">
+        <h3>Добавить игрока</h3>
+        <p>Форма с проверкой корректности введённых данных.</p>
+        <a class="btn" href="{{ url_for('add_player') }}">Перейти к форме</a>
+    </article>
+
+    <article class="card">
+        <h3>О проекте</h3>
+        <p>Что реализовано и какие технологии использованы.</p>
+        <a class="btn" href="{{ url_for('about') }}">Подробнее</a>
+    </article>
+</section>
+{% endblock %}

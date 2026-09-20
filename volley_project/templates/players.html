@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Игроки — ЖВК МАИ{% endblock %}
+
+{% block content %}
+<div class="page-head">
+    <h1>Состав команды</h1>
+    <p class="muted">Всего найдено: {{ players|length }}</p>
+</div>
+
+<form method="get" action="{{ url_for('players_list') }}" class="filter-form">
+    <label for="position">Фильтр по амплуа</label>
+    <div class="filter-row">
+        <input type="text" id="position" name="position"
+               value="{{ position }}" placeholder="Например: Связующий">
+        <button type="submit" class="btn">Найти</button>
+        {% if position %}
+            <a class="btn btn-ghost" href="{{ url_for('players_list') }}">Сбросить</a>
+        {% endif %}
+    </div>
+</form>
+
+{% if players %}
+    <div class="table-wrap">
+        <table class="players-table">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Имя</th>
+                    <th>Амплуа</th>
+                    <th>Рост</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                <tr>
+                    <td><span class="number-badge">{{ player.number }}</span></td>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.position }}</td>
+                    <td>{{ player.height }} см</td>
+                    <td><a class="link" href="{{ url_for('player_detail', player_id=player.id) }}">Подробнее →</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="empty-state">
+        <p>По запросу «{{ position }}» игроки не найдены.</p>
+        <a class="btn btn-ghost" href="{{ url_for('players_list') }}">Показать всех</a>
+    </div>
+{% endif %}
+{% endblock %}

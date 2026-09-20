@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Игрок добавлен{% endblock %}
+
+{% block content %}
+<div class="alert alert-success" role="status">
+    <h1> Игрок успешно добавлен</h1>
+    <p>В команду принят <strong>{{ name }}</strong> под номером <strong>{{ number }}</strong>.</p>
+</div>
+
+<div class="form-actions">
+    <a class="btn" href="{{ url_for('players_list') }}">Посмотреть состав</a>
+    <a class="btn btn-ghost" href="{{ url_for('add_player') }}">Добавить ещё одного</a>
+</div>
+{% endblock %}

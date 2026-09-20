@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Галерея — ЖВК МАИ{% endblock %}
+
+{% block content %}
+<div class="page-head">
+    <h1>Галерея команды</h1>
+    <p class="muted">Фотографии с матчей, тренировок и событий команды.</p>
+</div>
+
+{% if photos %}
+    <div class="gallery">
+        {% for photo in photos %}
+            <figure class="gallery-item">
+                <img src="{{ photo_url(photo.file) }}"
+                     alt="{{ photo.title }}"
+                     loading="lazy">
+                <figcaption>
+                    <strong>{{ photo.title }}</strong>
+                    <span class="muted">{{ photo.desc }}</span>
+                </figcaption>
+            </figure>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="empty-state">
+        <p>Пока нет фотографий.</p>
+    </div>
+{% endif %}
+{% endblock %}

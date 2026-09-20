@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}{{ player.name if player else "Игрок не найден" }}{% endblock %}
+
+{% block content %}
+{% if player %}
+    <div class="page-head">
+        <h1>{{ player.name }}</h1>
+        <p class="muted">{{ player.position }} · номер {{ player.number }}</p>
+    </div>
+
+    <div class="profile">
+        <div class="profile-body">
+            <ul class="profile-info">
+                <li><span>Рост</span><strong>{{ player.height }} см</strong></li>
+                <li><span>Год рождения</span><strong>{{ player.birth_year }}</strong></li>
+            </ul>
+
+            <p class="profile-bio">{{ player.bio }}</p>
+        </div>
+    </div>
+
+    <a class="btn btn-ghost" href="{{ url_for('players_list') }}">← К списку игроков</a>
+{% else %}
+    <div class="empty-state">
+        <h1>Игрок не найден</h1>
+        <p>Возможно, он был удалён или указан неверный идентификатор.</p>
+        <a class="btn" href="{{ url_for('players_list') }}">← К списку игроков</a>
+    </div>
+{% endif %}
+{% endblock %}
